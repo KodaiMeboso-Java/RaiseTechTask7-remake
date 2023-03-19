@@ -3,16 +3,10 @@ package com.example.RaiseTechTask7remake;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.web.util.UriComponentsBuilder;
-
-import java.net.URL;
-import java.net.HttpURLConnection;
-import java.net.URLEncoder;
 
 
 @RestController
@@ -28,17 +22,14 @@ public class Controller {
         return List.of("アバン", "ダイ");
     }
 
+
     @PostMapping("/postnames")
-    public String postName(@RequestParam(name = "test" , value = "test" , defaultValue = "テスト")String name) {
-        return "Hello, " + name + "!";
+    public ResponseEntity<String> postName(@RequestParam String name) {
+        if (name.length() > 20) {
+            return ResponseEntity.badRequest().body("nameは20文字以内");
+        }
+        return ResponseEntity.ok("Hello, " + name + "!");
     }
-//    ResponseEntity<String> create(@RequestBody CreateForm form) {
-//        URI url = UriComponentsBuilder.fromUriString("http://localhost:8080")
-//                .path("/names/id") // id部分は実際に登録された際に発⾏したidを設定する
-//                .build()
-//                .toUri();
-//        return ResponseEntity.created(url).body("name successfully created");
-//    }
 
     @PatchMapping("/names/{id}")
     public ResponseEntity<Map<String, String>> update(@PathVariable("id") int id, @RequestBody UpdateForm form) {
