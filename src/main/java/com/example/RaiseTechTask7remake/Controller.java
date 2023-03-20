@@ -23,7 +23,7 @@ public class Controller {
     }
 
 
-    @PostMapping("/postnames")
+    @PostMapping("/names")
     public ResponseEntity<String> postName(@RequestParam String name) {
         if (name.length() > 20) {
             return ResponseEntity.badRequest().body("nameは20文字以内");
