@@ -1,4 +1,4 @@
-package com.example.RaiseTechTask7remake;
+package com.example.Raisetechtask7remake;
 
 public class CreateForm {
     private String name;
