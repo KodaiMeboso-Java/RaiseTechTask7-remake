@@ -1,4 +1,4 @@
-package com.example.Raisetechtask7remake;
+package com.example.raisetechtask7remake;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

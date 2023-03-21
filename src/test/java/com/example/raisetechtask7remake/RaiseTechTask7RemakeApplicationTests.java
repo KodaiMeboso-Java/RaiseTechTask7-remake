@@ -1,4 +1,4 @@
-package com.example.Raisetechtask7remake;
+package com.example.raisetechtask7remake;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
