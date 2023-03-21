@@ -1,4 +1,4 @@
-package com.example.RaiseTechTask7remake;
+package com.example.raisetechtask7remake;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
