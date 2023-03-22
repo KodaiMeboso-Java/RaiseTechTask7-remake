@@ -1,8 +1,12 @@
 package com.example.raisetechtask7remake;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +29,17 @@ public class NameController {
         return ResponseEntity.ok("Hello, " + name + "!");
     }
     @PatchMapping("/names/{id}")
-    public ResponseEntity<Map<String, String>> update(@PathVariable("id") int id, @RequestBody UpdateForm form) {
+    public ResponseEntity<Map<String, String>> update(@PathVariable("id") int id, @Validated @RequestBody UpdateForm form, BindingResult result) {
+        if (result.hasErrors()) {
+            // バリデーションエラーが発生した場合の処理
+            Map<String, String> errors = new HashMap<>();
+            for (FieldError error : result.getFieldErrors()) {
+//                String field = error.getField();
+//                String message = error.getDefaultMessage();
+                errors.put(error.getField(), error.getDefaultMessage());
+            }
+            return ResponseEntity.badRequest().body(errors);
+        }
         return ResponseEntity.ok(Map.of("message", "name successfully updated"));
     }
     @DeleteMapping("/names/{id}")

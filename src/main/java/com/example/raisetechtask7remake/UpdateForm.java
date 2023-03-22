@@ -1,6 +1,8 @@
 package com.example.raisetechtask7remake;
 
+
 public class UpdateForm {
+    @NotBlank
     private String name;
 
     public String getName() {
