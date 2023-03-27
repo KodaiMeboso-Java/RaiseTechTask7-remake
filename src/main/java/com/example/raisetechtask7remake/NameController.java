@@ -34,8 +34,6 @@ public class NameController {
             // バリデーションエラーが発生した場合の処理
             Map<String, String> errors = new HashMap<>();
             for (FieldError error : result.getFieldErrors()) {
-//                String field = error.getField();
-//                String message = error.getDefaultMessage();
                 errors.put(error.getField(), error.getDefaultMessage());
             }
             return ResponseEntity.badRequest().body(errors);

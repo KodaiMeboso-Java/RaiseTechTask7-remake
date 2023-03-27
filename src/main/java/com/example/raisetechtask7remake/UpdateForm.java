@@ -1,8 +1,10 @@
 package com.example.raisetechtask7remake;
 
+import jakarta.validation.constraints.NotBlank;
 
 public class UpdateForm {
-    @NotBlank
+    @NotBlank(message = "名前を入力してください")
+
     private String name;
 
     public String getName() {
