@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -21,6 +22,7 @@ public class NameController {
     public List<String> getName() {
         return List.of("アバン", "ダイ");
     }
+
     @PostMapping("/names")
     public ResponseEntity<String> postName(@RequestParam String name) {
         if (name.length() > 20) {
@@ -28,18 +30,15 @@ public class NameController {
         }
         return ResponseEntity.ok("Hello, " + name + "!");
     }
+
     @PatchMapping("/names/{id}")
-    public ResponseEntity<Map<String, String>> update(@PathVariable("id") int id, @Validated @RequestBody UpdateForm form, BindingResult result) {
-        if (result.hasErrors()) {
-            // バリデーションエラーが発生した場合の処理
-            Map<String, String> errors = new HashMap<>();
-            for (FieldError error : result.getFieldErrors()) {
-                errors.put(error.getField(), error.getDefaultMessage());
-            }
-            return ResponseEntity.badRequest().body(errors);
-        }
+    public ResponseEntity<Map<String, String>> update(
+            @PathVariable("id") int id,
+            @Validated @RequestBody UpdateForm form,
+            BindingResult result) {
         return ResponseEntity.ok(Map.of("message", "name successfully updated"));
     }
+
     @DeleteMapping("/names/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") int id) {
         return ResponseEntity.ok("name successfully deleted");
