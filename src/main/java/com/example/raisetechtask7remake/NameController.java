@@ -34,8 +34,7 @@ public class NameController {
     @PatchMapping("/names/{id}")
     public ResponseEntity<Map<String, String>> update(
             @PathVariable("id") int id,
-            @Validated @RequestBody UpdateForm form,
-            BindingResult result) {
+            @Validated @RequestBody UpdateForm form) {
         return ResponseEntity.ok(Map.of("message", "name successfully updated"));
     }
 
