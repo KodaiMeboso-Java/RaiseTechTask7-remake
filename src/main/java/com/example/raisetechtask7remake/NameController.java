@@ -1,10 +1,7 @@
 package com.example.raisetechtask7remake;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -34,8 +31,7 @@ public class NameController {
     @PatchMapping("/names/{id}")
     public ResponseEntity<Map<String, String>> update(
             @PathVariable("id") int id,
-            @Validated @RequestBody UpdateForm form,
-            BindingResult result) {
+            @Validated @RequestBody UpdateForm form) {
         return ResponseEntity.ok(Map.of("message", "name successfully updated"));
     }
 
