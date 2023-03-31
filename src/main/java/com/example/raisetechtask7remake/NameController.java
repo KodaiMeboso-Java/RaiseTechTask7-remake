@@ -1,8 +1,10 @@
 package com.example.raisetechtask7remake;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,10 +15,12 @@ public class NameController {
         String greeting = "Hello World!";
         return greeting;
     }
+
     @GetMapping("/names")
     public List<String> getName() {
         return List.of("アバン", "ダイ");
     }
+
     @PostMapping("/names")
     public ResponseEntity<String> postName(@RequestParam String name) {
         if (name.length() > 20) {
@@ -24,10 +28,14 @@ public class NameController {
         }
         return ResponseEntity.ok("Hello, " + name + "!");
     }
+
     @PatchMapping("/names/{id}")
-    public ResponseEntity<Map<String, String>> update(@PathVariable("id") int id, @RequestBody UpdateForm form) {
+    public ResponseEntity<Map<String, String>> update(
+            @PathVariable("id") int id,
+            @Validated @RequestBody UpdateForm form) {
         return ResponseEntity.ok(Map.of("message", "name successfully updated"));
     }
+
     @DeleteMapping("/names/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") int id) {
         return ResponseEntity.ok("name successfully deleted");
