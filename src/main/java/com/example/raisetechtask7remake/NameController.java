@@ -15,6 +15,7 @@ public class NameController {
         String greeting = "Hello World!";
         return greeting;
     }
+
     @GetMapping("/names")
     public List<String> getName() {
         return List.of("アバン", "ダイ");
